@@ -178,7 +178,21 @@
         <!-- Post Content -->
         <p>どうも<br>今回はHexoの環境構築からHexoプロジェクトのデプロイまで行う記事を書きます。</p>
 <span id="more"></span>
-<h1 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h1><h2 id="訂正"><a href="#訂正" class="headerlink" title="訂正"></a>訂正</h2><p>本記事の作成したリポジトリ名で”test-blog.github.io”と指定してますが、<br>test-blog部分をGithubユーザーIDにしないとダメそうです。<br>(デプロイ後、デザインテーマに問題が発生しました。)<br>test-blog部分はご自身のGithubユーザーIDに脳内変換してください。</p>
+<h1 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h1><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a><ul>
+<li><a href="#%E8%A8%82%E6%AD%A3">訂正</a></li>
+<li><a href="#%E4%BB%8A%E5%9B%9E%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AE%E7%92%B0%E5%A2%83">今回の記事の環境</a></li>
+<li><a href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6">前提条件</a></li>
+<li><a href="#0%E3%83%96%E3%83%AD%E3%82%B0%E4%BD%9C%E6%88%90%E5%A0%B4%E6%89%80%E3%81%BE%E3%81%A7%E7%A7%BB%E5%8B%95">0.ブログ作成場所まで移動</a></li>
+<li><a href="#1hexo%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%8B%E3%82%89%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E4%BD%9C%E6%88%90">1.Hexoインストールからプロジェクト作成</a></li>
+<li><a href="#2%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E4%BD%9C%E6%88%90%E3%81%8B%E3%82%89githubpages%E8%A8%AD%E5%AE%9A">2.リポジトリ作成からGitHubPages設定</a></li>
+<li><a href="#ex%E4%B8%80%E5%BA%A6%E3%82%82%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88%E3%81%97%E3%81%9F%E3%81%93%E3%81%A8%E7%84%A1%E3%81%91%E3%82%8C%E3%81%B0%E9%8D%B5%E8%A8%AD%E5%AE%9A%E3%81%97%E3%81%9F%E3%81%93%E3%81%A8%E3%81%82%E3%82%8C%E3%81%B03%E3%81%AB%E3%82%B9%E3%82%AD%E3%83%83%E3%83%97">ex.一度もコミットしたこと無ければ鍵設定(したことあれば3にスキップ)</a></li>
+<li><a href="#3%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4">3.デプロイ</a></li>
+<li><a href="#%E4%BB%8A%E5%9B%9E%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AE%E3%82%AA%E3%82%B9%E3%82%B9%E3%83%A1%E6%9B%B2">今回の記事のオススメ曲</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="訂正"><a href="#訂正" class="headerlink" title="訂正"></a>訂正</h2><p>本記事の作成したリポジトリ名で”test-blog.github.io”と指定してますが、<br>test-blog部分をGithubユーザーIDにしないとダメそうです。<br>(デプロイ後、デザインテーマに問題が発生しました。)<br>test-blog部分はご自身のGithubユーザーIDに脳内変換してください。</p>
 <h2 id="今回の記事の環境"><a href="#今回の記事の環境" class="headerlink" title="今回の記事の環境"></a>今回の記事の環境</h2><p>・Windows(こちらは11)<br>・node.js(v20.17.0)<br>・GitHubアカウント<br>・Git(こちらはバージョン2.43.0を使用)<br>・PowerShell(コマンドプロンプトでもいいですが、今回はPSで)<br>・vscode</p>
 <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>・今回はnode.jsをインストール済みとします。<br>インストール方法がわからなかったら、”nodejs インストール windows”<br>とググればいろいろ出てきますので、そこからインストールしてください。<br><br><br>・Githubも同様にアカウントは作成してください。<br>・GitコマンドをPowerShellで使えるようにしてください。<br><br></p>
 <h2 id="0-ブログ作成場所まで移動"><a href="#0-ブログ作成場所まで移動" class="headerlink" title="0.ブログ作成場所まで移動"></a>0.ブログ作成場所まで移動</h2><p>・PowerShellでcdコマンドでHexoプロジェクト作成したい場所まで行きます</p>
