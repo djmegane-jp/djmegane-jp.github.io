@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="開発備忘録やゲームやラーメンについて語る">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="DJmegane">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Hexo環境構築からデプロイまで"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="開発備忘録やゲームやラーメンについて語る" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="DJmeganeの長い独り言"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    
+        <meta name="twitter:card" content="summary" />
+    
+    
+    
+
+    <!-- Title -->
+    
+    <title>Hexo環境構築からデプロイまで - DJmeganeの長い独り言</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/">
+                Hexo環境構築からデプロイまで
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2024-10-14</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Hexo/">Hexo</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>どうも<br>今回はHexoの環境構築からHexoプロジェクトのデプロイまで行う記事を書きます。</p>
+<span id="more"></span>
+<h1 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h1><h2 id="訂正"><a href="#訂正" class="headerlink" title="訂正"></a>訂正</h2><p>本記事の作成したリポジトリ名で”test-blog.github.io”と指定してますが、<br>test-blog部分をGithubユーザーIDにしないとダメそうです。<br>(デプロイ後、デザインテーマに問題が発生しました。)<br>test-blog部分はご自身のGithubユーザーIDに脳内変換してください。</p>
+<h2 id="今回の記事の環境"><a href="#今回の記事の環境" class="headerlink" title="今回の記事の環境"></a>今回の記事の環境</h2><p>・Windows(こちらは11)<br>・node.js(v20.17.0)<br>・GitHubアカウント<br>・Git(こちらはバージョン2.43.0を使用)<br>・PowerShell(コマンドプロンプトでもいいですが、今回はPSで)<br>・vscode</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>・今回はnode.jsをインストール済みとします。<br>インストール方法がわからなかったら、”nodejs インストール windows”<br>とググればいろいろ出てきますので、そこからインストールしてください。<br><br><br>・Githubも同様にアカウントは作成してください。<br>・GitコマンドをPowerShellで使えるようにしてください。<br><br></p>
+<h2 id="0-ブログ作成場所まで移動"><a href="#0-ブログ作成場所まで移動" class="headerlink" title="0.ブログ作成場所まで移動"></a>0.ブログ作成場所まで移動</h2><p>・PowerShellでcdコマンドでHexoプロジェクト作成したい場所まで行きます</p>
+<h2 id="1-Hexoインストールからプロジェクト作成"><a href="#1-Hexoインストールからプロジェクト作成" class="headerlink" title="1.Hexoインストールからプロジェクト作成"></a>1.Hexoインストールからプロジェクト作成</h2><p>・npmコマンドでHexoをインストールします</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+<br>
+・Hexoプロジェクトを作成します。今回はmyblogという名前にします。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init myblog</span><br></pre></td></tr></table></figure>
+・cdで移動し必要なモジュールをインストールします
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd myblog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>プロジェクト作成後はこんなフォルダ構成になっています</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">PS D:\wk_develop\nodejs\myblog&gt; ls</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    ディレクトリ: D:\wk_develop\nodejs\myblog</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Mode                 LastWriteTime         Length Name</span><br><span class="line">----                 -------------         ------ ----</span><br><span class="line">d-----        2024/10/14      4:43                .github</span><br><span class="line">d-----        2024/10/14      4:44                node_modules</span><br><span class="line">d-----        2024/10/14      4:43                scaffolds</span><br><span class="line">d-----        2024/10/14      4:43                source</span><br><span class="line">d-----        2024/10/14      4:43                themes</span><br><span class="line">-a----        2024/10/14      4:43             89 .gitignore</span><br><span class="line">-a----        2024/10/14      4:48          95723 package-lock.json</span><br><span class="line">-a----        2024/10/14      4:43            641 package.json</span><br><span class="line">-a----        2024/10/14      4:43              0 _config.landscape.yml</span><br><span class="line">-a----        2024/10/14      4:43           2547 _config.yml</span><br></pre></td></tr></table></figure>
+
+<p>・serveコマンドでローカル環境でサーバー起動する</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<br>
+下記が表示されればサーバー起動します。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INFO  Validating config</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+ブラウザのURL入力欄にhttp://localhost:4000/ を入力すれば
+下記の画像のようにブログが見れます。
+
+<p><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/localtest1.png" alt="alt" title="バグ画像"><br><br><br>ところで<br>-pオプションを使用するとポート番号を指定することができます。<br>(例としてポート番号5000でサーバー起動)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s -p 5000</span><br></pre></td></tr></table></figure>
+<p>また、-iオプションでIPアドレスも指定できるらしいですが<br>なんかエラーが吐かれたので今回は省略。</p>
+<h2 id="2-リポジトリ作成からGitHubPages設定"><a href="#2-リポジトリ作成からGitHubPages設定" class="headerlink" title="2.リポジトリ作成からGitHubPages設定"></a>2.リポジトリ作成からGitHubPages設定</h2><p>・GitHubのHome画面で新しくリポジトリを作成します<br><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/git1.png" alt="alt" title="リポジトリ作成"><br><br><br>・リポジトリ名を入力し”Add a README file”をチェック入れてリポジトリ作成ボタンを押下します。<br>※リポジトリ名は”GitHubユーザーID”.github.ioにしてください<br><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/git2.png" alt="alt" title="リポジトリ作成2"><br><br><br>・リポジトリのSettingsタブをクリックして左メニューのPagesをクリックし、<br>Branch欄を”None”から”main”に変更します。(mainになっていればスキップ)<br><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/git4.png" alt="alt" title="リポジトリ作成2"><br><br><br>・ここで５分ー10分程待ってください。<br>リポジトリ作成後にすぐGitHub Pageが作られないそうです。<br>(推測ですが何度かリポジトリ作成したりアカウント作り直して判明しました(疲れた))<br><br><br>・しばらくしたら画像のようになっています。<br>赤枠のボタン押下したら作成されたページに飛べます。<br><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/git5.png" alt="alt" title="リポジトリ作成2"><br>・実際に作成したGithub Page<br><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/git6.png" alt="alt" title="リポジトリ作成2"><br><br><br>・リポジトリのCode画面に遷移して赤枠をクリックしてSSHをコピーします。<br><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/git7.png" alt="alt" title="リポジトリ作成2"></p>
+<p>・設定ファイル(_config.yml)を以下を例に変更します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: Hexoブログつくってみたよ #ブログのタイトル</span><br><span class="line">subtitle: &#x27;さぶたいとるー&#x27; #ブログのサブタイトル</span><br><span class="line">author: もう一人のボク #作成者</span><br><span class="line">language: ja #言語(日本はja)</span><br><span class="line">timezone: &#x27;Asia/Tokyo&#x27; #タイムゾーン(日本なのでAsia/Tokyo)</span><br><span class="line"></span><br><span class="line"># URL</span><br><span class="line">url: https://djmegane-blog.github.io/ #ブログのURLです &quot;GitHubの名前&quot;.github.ioにしてください</span><br><span class="line"></span><br><span class="line"># Writing</span><br><span class="line">post_asset_folder: true #trueにかえて記事作成の時にフォルダも作成するようにしましょう</span><br><span class="line"></span><br><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: &#x27;git&#x27;</span><br><span class="line">  repo: &#x27;git@github.com:djmegane-blog/djmegane-blog.github.io.git&#x27; #先ほどコピーしたSSH</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+
+<h2 id="ex-一度もコミットしたこと無ければ鍵設定-したことあれば3にスキップ"><a href="#ex-一度もコミットしたこと無ければ鍵設定-したことあれば3にスキップ" class="headerlink" title="ex.一度もコミットしたこと無ければ鍵設定(したことあれば3にスキップ)"></a>ex.一度もコミットしたこと無ければ鍵設定(したことあれば3にスキップ)</h2><br>
+・GitHubに１度もpullやcommitしたこと無い場合、SSHキーを作成する必要があります。
+一度、鍵を作成するフォルダに移動します。
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh</span><br></pre></td></tr></table></figure>
+
+<p>以下のコマンドで鍵を作成します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<br>
+以下の３メッセージが表示されます。
+それぞれ、鍵名(このままEnterを押してください)、パスフレーズ、パスフレーズの再入力を入力してください。
+(パスフレーズはパスワードのようなものなので後に入力しますので覚えておいてください)
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/Users/(username)/.ssh/id_rsa):このままEnter</span><br><span class="line">Enter passphrase (empty for no passphrase):パスフレーズ</span><br><span class="line">Enter same passphrase again:パスフレーズの再入力</span><br></pre></td></tr></table></figure>
+すると鍵フォルダに２ファイルが作成されます。
+
+<p><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/key.png" alt="alt" title="鍵ファイル"><br><br><br>・ファイル(id_rsa.pub)をテキストエディタで開き、内容をコピーします。<br><br><br>・GitHubのアカウント設定画面に遷移します。URLから鍵設定画面に飛べます。<br><a target="_blank" rel="noopener" href="https://github.com/settings/ssh/new">https://github.com/settings/ssh/new</a><br><br><br>・赤枠部分を入力、Nameは適当で良いかと思います。<br>Key欄に先ほどコピーした鍵内容を貼り付けてください。<br>入力したら”Add SSH key”ボタンを押下します。</p>
+<p><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/key2.png" alt="alt" title="鍵ファイル"></p>
+<p>鍵が作成されました。<br><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/key3.png" alt="alt" title="鍵ファイル"><br><br><br>・cdコマンドでHexoのプロジェクトフォルダに移動してください。<br><br><br>・PowerShellで以下の２コマンドでGitのアカウントを指定してください。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;GitHubユーザーID&quot;</span><br><span class="line">git config --global user.email &quot;GitHub登録時のメールアドレス&quot;</span><br></pre></td></tr></table></figure>
+<br>
+
+<h2 id="3-デプロイ"><a href="#3-デプロイ" class="headerlink" title="3.デプロイ"></a>3.デプロイ</h2><p>いよいよGitHubPageにデプロイです。<br>・デプロイするためのモジュールをインストールします。<br>(PowerShellに入力)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<br>
+キャッシュファイルを削除してからデプロイします。
+以下の２コマンドをPowerShellに入力し、先ほどの鍵のパスフレーズを入力してEnter
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo deploy --generate</span><br></pre></td></tr></table></figure>
+<br>
+"INFO  Deploy done: git"と表示されればデプロイされました。
+数分経ってみてから先ほどのコンフィグファイルのURL欄で設定したURLを
+ブラウザで表示してみましょう。
+
+<p><img src="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/kansei.png" alt="alt" title="完成画像"></p>
+<p>お疲れ様でした。<br><br></p>
+<h2 id="今回の記事のオススメ曲"><a href="#今回の記事のオススメ曲" class="headerlink" title="今回の記事のオススメ曲"></a>今回の記事のオススメ曲</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/MqQp72981yE" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>beatmania 4thMIXからこの曲を知りました。<br>まさかFULL曲あるとは思いませんでした。<br>やっぱりHOUSEはいいですね。<br><br><br>では、また次回。</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/Hexo/">#Hexo</a> <a href="/tags/ブログ/">#ブログ</a> <a href="/tags/node-js/">#node.js</a> <a href="/tags/GitHub/">#GitHub</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a target="_blank" rel="noopener" href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/">Hexo環境構築からデプロイまで</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2024/10/13/%E3%81%95%E3%81%A3%E3%81%9D%E3%81%8FHexo%E3%81%A7%E3%83%90%E3%82%B0/">さっそくHexoでバグ</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2024/10/12/welcome/">welcome</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/%E9%9B%91%E8%AB%87/">雑談</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Hexo/%E3%83%96%E3%83%AD%E3%82%B0/">ブログ</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Hexo/%E3%83%96%E3%83%AD%E3%82%B0/node-js/">node.js</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Hexo/%E3%83%96%E3%83%AD%E3%82%B0/node-js/GitHub/">GitHub</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://dribbble.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-dribbble"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://telegram.org/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-telegram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.behance.net/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-behance"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://500px.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-500px"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:test@example.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
