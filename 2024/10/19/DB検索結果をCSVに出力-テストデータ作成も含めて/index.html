@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="開発備忘録やゲームやラーメンについて語る">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="DJmegane">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="DB検索結果をCSVに出力(テストデータ作成も含めて)"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="開発備忘録やゲームやラーメンについて語る" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="DJmeganeの長い独り言"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    
+        <meta name="twitter:card" content="summary" />
+    
+    
+    
+
+    <!-- Title -->
+    
+    <title>DB検索結果をCSVに出力(テストデータ作成も含めて) - DJmeganeの長い独り言</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Google Analytics -->
+    
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2024/10/19/DB%E6%A4%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E3%82%92CSV%E3%81%AB%E5%87%BA%E5%8A%9B-%E3%83%86%E3%82%B9%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E4%BD%9C%E6%88%90%E3%82%82%E5%90%AB%E3%82%81%E3%81%A6/">
+                DB検索結果をCSVに出力(テストデータ作成も含めて)
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2024-10-19</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/SQLServer/">SQLServer</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>こんばんは<br>今回はDB検索結果を基にCSV出力したお話しを書きます。</p>
+<span id="more"></span>
+
+<h2 id="目次"><a href="#目次" class="headerlink" title="目次"></a>目次</h2><ul>
+<li><a href="#%E7%9B%AE%E6%AC%A1">目次</a></li>
+<li><a href="#%E4%BA%8B%E3%81%AE%E5%A7%8B%E3%81%BE%E3%82%8A">事の始まり</a></li>
+<li><a href="#%E3%83%86%E3%82%B9%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E4%BD%9C%E6%88%90">テストデータ作成</a></li>
+<li><a href="#%E6%A4%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E3%82%92csv%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8%E3%81%97%E3%81%A6%E5%87%BA%E5%8A%9B">検索結果をCSVファイルとして出力</a></li>
+<li><a href="#%E4%BB%8A%E5%9B%9E%E3%81%AE%E8%A8%98%E4%BA%8B%E3%81%AE%E3%82%AA%E3%82%B9%E3%82%B9%E3%83%A1%E6%9B%B2">今回の記事のオススメ曲</a></li>
+</ul>
+<h2 id="事の始まり"><a href="#事の始まり" class="headerlink" title="事の始まり"></a>事の始まり</h2><p>ある日仕事してるとき上司からT-SQL(ストアドプロシージャ)したことありますかと言われ、去年案件で初めてストアドプロシージャを使って処理を書いたことがあったので、YESと答えたところ、ある案件で下記の処理を行いたいとの話がありました。<br>その内容は<br>“テーブルに登録されているデータをルールに従って集計しCSV出力したい”<br>とのことです。</p>
+<p>案件に携わる可能性があるので今のうちにちょっと知っとこうかなと思い、こちらの環境で予測しつつ書いてみました。</p>
+<h2 id="テストデータ作成"><a href="#テストデータ作成" class="headerlink" title="テストデータ作成"></a>テストデータ作成</h2><p>“登録されているデータをルールに従って集計”とのことで、集計ってcount関数とかそういうのじゃないですよね？って思いそこはわからなかったのですが、とりあえず今回の検証は個人的に作っているWEBアプリ(ゲームコレクターアプリ)で使用して入力されたソフト情報の記録先であるソフトウェアテーブルを使って、ハードウェアを抽出条件として検索した結果をCSVに出力します。</p>
+<p>とりあえずテーブルやデータを１件だけ作ってありますが、数千件はレコードが欲しいなと思い、カラム(ハードウェア)を乱数でPS1やセガサターンなどが入ったレコードを作りたいと思い、調べつつストアドプロシージャを作成しました。</p>
+<p>下記が、テストデータ作成用のストアドプロシージャです。<br>(一部DB名を修正してます)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">USE [DBNAME]</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">SET ANSI_NULLS ON</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">SET QUOTED_IDENTIFIER ON</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">CREATE PROCEDURE [proc_Create_TestData_Software]</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">	DECLARE @index INTEGER</span><br><span class="line"></span><br><span class="line">    --SOFTWARE_ID</span><br><span class="line">    SET @index = 1</span><br><span class="line"></span><br><span class="line">    --5000件作る</span><br><span class="line">    WHILE @index &lt;= 5000</span><br><span class="line">	BEGIN</span><br><span class="line">		--変数宣言(型やサイズはカラム構成通りに宣言)</span><br><span class="line">		DECLARE @randomHdId NVARCHAR(30)</span><br><span class="line">		DECLARE @randomGenre NVARCHAR(10)</span><br><span class="line">	</span><br><span class="line">		--ハードウェア値をランダム取得</span><br><span class="line">		SELECT TOP 1 @randomHdId = t_hardware.hardware_id FROM t_hardware ORDER BY NEWID();</span><br><span class="line"></span><br><span class="line">                --ジャンルもランダムで取得します(アクションやRPGとかです)</span><br><span class="line">		SELECT TOP 1 @randomGenre = m_genre.genre FROM m_genre ORDER BY NEWID();</span><br><span class="line">			</span><br><span class="line">		--テストデータ作成(Insert文)</span><br><span class="line">		INSERT INTO t_software</span><br><span class="line">		VALUES</span><br><span class="line">		(&#x27;TSID&#x27; + CONVERT(NVARCHAR,@index),</span><br><span class="line">			&#x27;test&#x27; + CONVERT(NVARCHAR,@index),</span><br><span class="line">			@randomHdId,</span><br><span class="line">			&#x27;testPub&#x27;,</span><br><span class="line">			&#x27;testDev&#x27;,</span><br><span class="line">			@randomGenre,</span><br><span class="line">			&#x27;testTag&#x27;,</span><br><span class="line">			CURRENT_TIMESTAMP</span><br><span class="line">		);</span><br><span class="line"></span><br><span class="line">		--インクリメント</span><br><span class="line">		SET @index = @index + 1</span><br><span class="line"></span><br><span class="line">	END</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<p>これで、まずクラステーブルのハードウェアテーブルやジャンルテーブルに入っているハードウェアIDとジャンルIDをランダムに取得しソフトウェアID(TSID1からTSID5000まで)を作成します。</p>
+<br>
+結果が下記です。(数件のみ)
+※2行目のレコードは実際にあるプレステソフトのデータです。
+<br>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">software_id	software_name	hardware_id	publisher_id	developer_id	genre	tags	modify_date</span><br><span class="line">SLPS01577	必殺パチンコシミュレーション パチンコステーション モンスターハウススペシャル	PS1	SUNSOFT-001	SUNSOFT-001	SLG	シミュレーション,パチンコ,パチスロ	2024-09-07 11:35:00</span><br><span class="line">TSID1	test1	N64	testPub	testDev	RCG	testTag	2024-10-16 00:49:00</span><br><span class="line">TSID10	test10	PCE	testPub	testDev	RPG	testTag	2024-10-16 00:49:00</span><br><span class="line">TSID100	test100	NSW	testPub	testDev	SLG	testTag	2024-10-16 00:49:00</span><br><span class="line">TSID1000	test1000	MG	testPub	testDev	RPG	testTag	2024-10-16 00:49:00</span><br><span class="line">TSID1001	test1001	PCE	testPub	testDev	SPT	testTag	2024-10-16 00:49:00</span><br><span class="line">TSID1002	test1002	WiiU	testPub	testDev	MSLG	testTag	2024-10-16 00:49:00</span><br><span class="line">TSID1003	test1003	Steam	testPub	testDev	SLG	testTag	2024-10-16 00:49:00</span><br><span class="line">TSID1004	test1004	Wii	testPub	testDev	SLG	testTag	2024-10-16 00:49:00</span><br></pre></td></tr></table></figure>
+<br>
+少し見ずらいですが、ハードやジャンルがランダムに取得してデータが作成されています。
+<br>
+ハード例：MG(メガドライブ),PCE(PCエンジン)
+<br>
+ジャンル例：SLG(シミュレーション),SPT（スポーツゲーム）
+<br>
+<br>
+ORDER BY NEWID()によってランダムにテーブルがソートされることにより、
+ランダムに値を取得することができます。
+<br>
+
+<h2 id="検索結果をCSVファイルとして出力"><a href="#検索結果をCSVファイルとして出力" class="headerlink" title="検索結果をCSVファイルとして出力"></a>検索結果をCSVファイルとして出力</h2><p>次はテストデータ作成したソフトウェアテーブルをハードウェアを抽出条件に指定して、<br>CSVファイルに出力します。<br>下記が作成したストアドプロシージャです。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">USE [DBNAME]</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">SET ANSI_NULLS ON</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">SET QUOTED_IDENTIFIER ON</span><br><span class="line">GO</span><br><span class="line"></span><br><span class="line">--引数で抽出条件のハードウェアIDを指定します。</span><br><span class="line">CREATE PROCEDURE [proc_Select_To_CSV_Where_Hardware]</span><br><span class="line">	@hardware_id nvarchar(30)</span><br><span class="line">AS</span><br><span class="line">BEGIN</span><br><span class="line">	SET NOCOUNT ON;</span><br><span class="line"></span><br><span class="line">        --DBサーバーの情報と出力先とファイル名を宣言</span><br><span class="line">        DECLARE @SERVER   VARCHAR(MAX) = &#x27;localhost&#x27;;</span><br><span class="line">	DECLARE @DATABASE VARCHAR(MAX) = &#x27;DBNAME&#x27;;</span><br><span class="line">	DECLARE @OUTFILE  VARCHAR(MAX) = &#x27;D:\temp\test.csv&#x27;;</span><br><span class="line">	</span><br><span class="line">        --ソフトウェアテーブルを検索</span><br><span class="line">	DECLARE @SQL VARCHAR(8000) = &#x27;&#x27;;</span><br><span class="line">	select </span><br><span class="line">		@SQL += &#x27;SELECT * FROM t_software &#x27;</span><br><span class="line">		,@SQL += &#x27;where hardware_id = &#x27;&#x27;&#123;HARDWARE&#125;&#x27;&#x27;&#x27;</span><br><span class="line">		,@SQL = REPLACE(@SQL,&#x27;&#123;HARDWARE&#125;&#x27;  ,@hardware_id);</span><br><span class="line"></span><br><span class="line">	DECLARE @CMD VARCHAR(8000) = &#x27;&#x27;;</span><br><span class="line">        --DOSコマンド用の文字列を代入</span><br><span class="line">	SELECT</span><br><span class="line">		 @CMD += &#x27;SQLCMD&#x27;</span><br><span class="line">		,@CMD += &#x27; -S &#123;SERVER&#125;&#x27;</span><br><span class="line">		,@CMD += &#x27; -d &#123;DATABASE&#125;&#x27;</span><br><span class="line">		,@CMD += &#x27; -q &quot;&#123;SQL&#125;&quot;&#x27;</span><br><span class="line">		,@CMD += &#x27; -s &#x27;&#x27;,&#x27;&#x27; -W&#x27;</span><br><span class="line">		,@CMD += &#x27; -o &#123;FILE&#125;&#x27;</span><br><span class="line">		,@CMD = REPLACE(@CMD,&#x27;&#123;SERVER&#125;&#x27;  ,@SERVER)</span><br><span class="line">		,@CMD = REPLACE(@CMD,&#x27;&#123;DATABASE&#125;&#x27;,@DATABASE)</span><br><span class="line">		,@CMD = REPLACE(@CMD,&#x27;&#123;SQL&#125;&#x27;     ,@SQL)</span><br><span class="line">		,@CMD = REPLACE(@CMD,&#x27;&#123;FILE&#125;&#x27;    ,@OUTFILE)</span><br><span class="line">	;</span><br><span class="line"></span><br><span class="line">        --DOSコマンドを実行させるために構成オプションを変更するために実行</span><br><span class="line">        EXEC sp_configure &#x27;show advanced options&#x27;,1;</span><br><span class="line">	RECONFIGURE;</span><br><span class="line">	EXEC sp_configure &#x27;xp_cmdshell&#x27;,1</span><br><span class="line">	RECONFIGURE;</span><br><span class="line"></span><br><span class="line">        --CSV出力用のDOSコマンド実行</span><br><span class="line">	EXEC master..xp_cmdshell @CMD;</span><br><span class="line">END</span><br><span class="line">GO</span><br></pre></td></tr></table></figure>
+
+<p>各コメントの説明の通りです。</p>
+<p>46行から48行までについてですが、<br>DOSコマンドを実行させるための”xp_cmdshell”を実行させるために<br>SQLServerのグローバル構成設定を変更させる必要があるそうです。<br>‘show advanced options’,1でシステムストアドプロシージャの拡張オプションを表示して、<br>‘xp_cmdshell’1にすることによりxp_cmdshellが使えるようになります。<br>RECONFIGUREで構成設定を更新することができます。</p>
+<p>ストアドプロシージャ実行後、test.csvが出力されます。<br>一部内容です。(引数でPS2を指定)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">software_id&#x27;software_name&#x27;hardware_id&#x27;publisher_id&#x27;developer_id&#x27;genre&#x27;tags&#x27;modify_date</span><br><span class="line">-----------&#x27;-------------&#x27;-----------&#x27;------------&#x27;------------&#x27;-----&#x27;----&#x27;-----------</span><br><span class="line">TSID1017&#x27;test1017&#x27;PS2&#x27;testPub&#x27;testDev&#x27;RCG&#x27;testTag&#x27;2024-10-16 00:49:00</span><br><span class="line">TSID1036&#x27;test1036&#x27;PS2&#x27;testPub&#x27;testDev&#x27;SPT&#x27;testTag&#x27;2024-10-16 00:49:00</span><br><span class="line">TSID1048&#x27;test1048&#x27;PS2&#x27;testPub&#x27;testDev&#x27;PZL&#x27;testTag&#x27;2024-10-16 00:49:00</span><br><span class="line">TSID1202&#x27;test1202&#x27;PS2&#x27;testPub&#x27;testDev&#x27;AVG&#x27;testTag&#x27;2024-10-16 00:49:00</span><br><span class="line">TSID124&#x27;test124&#x27;PS2&#x27;testPub&#x27;testDev&#x27;RCG&#x27;testTag&#x27;2024-10-16 00:49:00</span><br><span class="line">TSID1240&#x27;test1240&#x27;PS2&#x27;testPub&#x27;testDev&#x27;RPG&#x27;testTag&#x27;2024-10-16 00:49:00</span><br></pre></td></tr></table></figure>
+
+<p>お疲れ様でした。<br><br></p>
+<h2 id="今回の記事のオススメ曲"><a href="#今回の記事のオススメ曲" class="headerlink" title="今回の記事のオススメ曲"></a>今回の記事のオススメ曲</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/mizJqbOrS1M" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>この時期ですが、SNSでとんねるずがライブをやるとの記事をよく見かけ<br>野猿復活しないかな・・・と思い、野猿で一番好きな曲を載せます。<br>曲調も好きですが、あまり普段意識してない歌詞も好きです。<br><br><br>では、また次回。</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/SQLServer/">#SQLServer</a> <a href="/tags/SQL/">#SQL</a> <a href="/tags/DB/">#DB</a> <a href="/tags/ストアドプロシージャ/">#ストアドプロシージャ</a> <a href="/tags/T-SQL/">#T-SQL</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This theme was developed by <a target="_blank" rel="noopener" href="https://github.com/klugjo">Jonathan Klughertz</a>. The source code is available on Github. Create Websites. Make Magic.
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2024/10/19/DB%E6%A4%9C%E7%B4%A2%E7%B5%90%E6%9E%9C%E3%82%92CSV%E3%81%AB%E5%87%BA%E5%8A%9B-%E3%83%86%E3%82%B9%E3%83%88%E3%83%87%E3%83%BC%E3%82%BF%E4%BD%9C%E6%88%90%E3%82%82%E5%90%AB%E3%82%81%E3%81%A6/">DB検索結果をCSVに出力(テストデータ作成も含め</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2024/10/14/Hexo%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%E3%81%8B%E3%82%89%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%BE%E3%81%A7/">Hexo環境構築からデプロイまで</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2024/10/13/%E3%81%95%E3%81%A3%E3%81%9D%E3%81%8FHexo%E3%81%A7%E3%83%90%E3%82%B0/">さっそくHexoでバグ</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2024/10/12/welcome/">welcome</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/%E9%9B%91%E8%AB%87/">雑談</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/SQLServer/">SQLServer</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/SQLServer/SQL/">SQL</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Hexo/%E3%83%96%E3%83%AD%E3%82%B0/">ブログ</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://github.com/klugjo/hexo-theme-alpha-dust">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://dribbble.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-dribbble"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://telegram.org/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-telegram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://www.behance.net/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-behance"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a target="_blank" rel="noopener" href="https://500px.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-500px"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:test@example.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @Untitled. All right reserved | Design & Hexo <a target="_blank" rel="noopener" href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
