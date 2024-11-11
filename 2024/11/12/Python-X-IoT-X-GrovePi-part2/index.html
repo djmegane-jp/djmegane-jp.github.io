@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="DJmeganeの長い独り言"/>
+        <meta property="og:title" content="Python X IoT X GrovePi part2"/>
     
 
     <!--Open Graph Description-->
@@ -33,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -47,7 +47,7 @@
 
     <!-- Title -->
     
-    <title>Grove - DJmeganeの長い独り言</title>
+    <title>Python X IoT X GrovePi part2 - DJmeganeの長い独り言</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -136,9 +136,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -146,34 +144,82 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">#Grove</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2024/11/07/Python-X-IoT-X-GrovePi/">
-        <span class="archive-date">
-            Nov 2024
-        </span>
-        Python X IoT X GrovePi その1
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2024/11/12/Python-X-IoT-X-GrovePi-part2/">
+                Python X IoT X GrovePi part2
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2024-11-12</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/RaspberryPI/">RaspberryPI</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>こんばんは<br>土日は忙しかったり眠かったりであげれませんでした。<br>前回の記事の続きというか概要説明です。</p>
+<span id="more"></span>
+
+<h2 id="そもそもGrovePiってなんぞや"><a href="#そもそもGrovePiってなんぞや" class="headerlink" title="そもそもGrovePiってなんぞや"></a>そもそもGrovePiってなんぞや</h2><p>はい、GrovePiというかGroveの簡単な説明をします。<br>Groveとはseeed studioという会社が作ったレゴのように簡単にセンサーなどを基盤につなげる端子モジュールです。</p>
+<p>小学生でももしかしたら扱えるぐらいのわかりやすい端子になっています。</p>
+<p>それをみんな大好きRaspberryPiで接続できるようにしよーぜってことで開発されたのがGrovePiとなります。</p>
+<p><img src="/2024/11/12/Python-X-IoT-X-GrovePi-part2/pic1.png" alt="alt" title="ラズパイとGrovePi"></p>
+<p>※ブレました。すいません。</p>
+<p>一応、スイッチサイエンスのページを張っときます。(Amazonにも売ってました。自分は当時はアマゾンで購入しました。)<br><a target="_blank" rel="noopener" href="https://www.switch-science.com/products/2129?_pos=2&_sid=7818eff25&_ss=r">https://www.switch-science.com/products/2129?_pos=2&amp;_sid=7818eff25&amp;_ss=r</a></p>
+<p>ちなみに、最近ではGrove端子はいろんなガジェットにも搭載されるようになっていまして、電子工作ガジェットで有名なM5Stackにも端子が１個標準搭載されています。<br><img src="/2024/11/12/Python-X-IoT-X-GrovePi-part2/pic3.png" alt="alt" title="M5Stack"></p>
+<h2 id="接続するとどうなるの？"><a href="#接続するとどうなるの？" class="headerlink" title="接続するとどうなるの？"></a>接続するとどうなるの？</h2><p>今回必要なのは光を検知したいので、ライトセンサーをつなげます。<br>RaspberryPiとGrovePiボードとライトセンサーをつなげるとこんな感じ</p>
+<p><img src="/2024/11/12/Python-X-IoT-X-GrovePi-part2/pic2.png" alt="alt" title="ラズパイとGrovePi2"></p>
+<p>これで、ハードの準備は完了です。<br>接続部分を見ると結構簡単につなげれそうに見えませんか？？<br>(環境構築に関しては使用基盤がもう古くサポートされていない方法で行った為割愛)</p>
+<h2 id="実際にどういう感じで動くの？"><a href="#実際にどういう感じで動くの？" class="headerlink" title="実際にどういう感じで動くの？"></a>実際にどういう感じで動くの？</h2><p>簡単にシステム構成図を作ってみました。<br>こんな感じです。↓<br><img src="/2024/11/12/Python-X-IoT-X-GrovePi-part2/system_kousei.png" alt="alt" title="光検知システム構成図"></p>
+<p>実際に動かした際、送信側では値(検知した光の値(ルクス？？？))がコンソールに表示されます。<br><img src="/2024/11/12/Python-X-IoT-X-GrovePi-part2/console.png" alt="alt" title="送信側コンソール"></p>
+<p>テストして10分指定させて動きましたが、今日は遅いのでここまでにします。(修正版は後日に更新予定)</p>
+<h2 id="終わり"><a href="#終わり" class="headerlink" title="終わり"></a>終わり</h2><p>なんちゃってではないとは思いますが、これがシンプルなIoT例だと思います。これを例えば受信側PCにDBなども入れて受信したら受信した時刻と共にDBにInsertするなどすれば、１日に何回、電気がつけっぱなしなどが記録できます。(記録した内容をグラフ出力したりなどすればいわゆる”見える化”なども実現できますね)<br>個人的には受信したらアラーム音を鳴らすなどをしたかったです。(今度時間あるときにしてみようかと思います。)</p>
+<p>お疲れ様でした。</p>
+<br>
+
+<h2 id="今回の記事のオススメ曲"><a href="#今回の記事のオススメ曲" class="headerlink" title="今回の記事のオススメ曲"></a>今回の記事のオススメ曲</h2><div class="video-container"><iframe src="https://www.youtube.com/embed/6QBErej5UUY" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>自分はゲームソフトを数百本所持してるほどのゲーム好きですが、<br>上げる曲もほぼゲームに関連してるのを意識してあげます(読んでいただいている皆さんに布教したいので。。。)<br>この曲もゲームにかかわっていまして、KOEIさんの信長の野望 創造のテーマソングとなってます。<br>このテーマソング、実は最初の歌唱部分のメロディが２作目信長の野望 全国版のタイトルBGMからとってるのです。なんか聞き覚えあるなと思って調べて知ったときは思わずすげー!!と声が出ました。<br>信長の野望は10作以上ありますけど遊びやすさと楽しさ(歴史勉強になる)は個人的には創造(PS3,4,Switch,PSVITA,PCでリリースされてます)が一番だと思う作品なので、ぜひ遊んでみてください。下手な自分でも最後まで遊べました。(シブサワコウさんありがとうございます。)</p>
+<p>いやー　長くなった。やっぱり愛がある話になるとつい長くなりますね。<br><br><br>では、また次回。</p>
+
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/RaspberryPI/">#RaspberryPI</a> <a href="/tags/Grove/">#Grove</a> <a href="/tags/Python/">#Python</a> <a href="/tags/IoT/">#IoT</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/2024/11/12/Python-X-IoT-X-GrovePi-part2/">
-        <span class="archive-date">
-            Nov 2024
-        </span>
-        Python X IoT X GrovePi part2
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
+
 
 </div>
 

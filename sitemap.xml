@@ -2,9 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://djmegane-jp.github.io/2024/11/12/Python-X-IoT-X-GrovePi-part2/</loc>
+    
+    <lastmod>2024-11-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://djmegane-jp.github.io/2024/11/07/Python-X-IoT-X-GrovePi/</loc>
     
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2024-11-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +58,7 @@
 
   <url>
     <loc>https://djmegane-jp.github.io/</loc>
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2024-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
